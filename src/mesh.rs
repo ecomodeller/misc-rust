@@ -140,3 +140,44 @@ pub fn read_elements_from_file(filename: &str, start_line: usize) -> ElementTabl
     }
     ElementTable { elements: elements }
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::mesh::{ElementTable, Geometry, Node};
+
+    #[test]
+    fn test_get_node() {
+        let mut nodes = Vec::new();
+        nodes.push(Node {
+            id: 1,
+            coordinates: vec![0.0, 0.0],
+            code: 0,
+        });
+        nodes.push(Node {
+            id: 2,
+            coordinates: vec![1.0, 0.0],
+            code: 0,
+        });
+        nodes.push(Node {
+            id: 3,
+            coordinates: vec![1.0, 1.0],
+            code: 0,
+        });
+        nodes.push(Node {
+            id: 4,
+            coordinates: vec![0.0, 1.0],
+            code: 0,
+        });
+
+        let geometry = Geometry {
+            nodes: nodes,
+            element_table: ElementTable {
+                elements: Vec::new(),
+            },
+        };
+
+        let node = geometry.get_node(2);
+        assert_eq!(node.coordinates[0], 1.0);
+        assert_eq!(node.coordinates[1], 0.0);
+    }
+}
