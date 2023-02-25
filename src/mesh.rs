@@ -52,6 +52,15 @@ pub struct Element {
     pub nodes: Vec<usize>,
 }
 
+impl Element {
+    pub fn new(id: usize, nodes: Vec<usize>) -> Element {
+        if id < 1 {
+            panic!("Element id must be greater than 0");
+        }
+        Element { id, nodes }
+    }
+}
+
 pub struct ElementTable {
     pub elements: Vec<Element>,
 }
@@ -227,9 +236,6 @@ mod tests {
     #[test]
     #[should_panic]
     fn test_add_element_with_id_less_than_1_is_not_allowed() {
-        Element {
-            id: 0, // id must be greater than 0
-            nodes: vec![1, 2, 3, 4],
-        };
+        Element::new(0, vec![1, 2, 3, 4]);
     }
 }
