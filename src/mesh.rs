@@ -70,6 +70,17 @@ impl Element {
 }
 
 pub struct ElementTable {
+    /// A vector of elements
+    /// # Examples
+    /// ```
+    /// use mesh::ElementTable;
+    /// let elements = vec![];
+    /// let el1 = Element::new(1, vec![1, 2, 3]);
+    /// let el2 = Element::new(2, vec![1, 2, 3]);
+    /// elements.push(el1);
+    /// elements.push(el2);
+    /// let element_table = ElementTable { elements: elements };
+    /// ```
     pub elements: Vec<Element>,
 }
 
