@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"trait":[["HaversineDistance","Determine the distance between two geometries using the haversine formula."]]};

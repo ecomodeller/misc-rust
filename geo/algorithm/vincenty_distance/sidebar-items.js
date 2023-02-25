@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":[["FailedToConvergeError",""]],"trait":[["VincentyDistance","Determine the distance between two geometries using Vincenty’s formulae."]]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":[["Intersections","Iterator over all intersections of a collection of lines."],["LineOrPoint","Either a line segment or a point."],["SweepPoint","A lexicographically ordered point."]],"trait":[["Cross","Interface for types that can be processed to detect crossings."]]};

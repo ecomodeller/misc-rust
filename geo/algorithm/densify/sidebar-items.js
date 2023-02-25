@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"trait":[["Densify","Return a new linear geometry containing both existing and new interpolated coordinates with a maximum distance of `max_distance` between them."]]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"trait":[["Within","Tests if a geometry is completely within another geometry."]]};

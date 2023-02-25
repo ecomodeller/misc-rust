@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":[["Extreme",""],["Outcome",""]],"trait":[["Extremes","Find the extreme coordinates and indices of a geometry."]]};

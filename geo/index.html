@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="The `geo` crate provides geospatial primitive types and algorithms."><meta name="keywords" content="rust, rustlang, rust-lang, geo"><title>geo - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-6827029ac823cab7.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../static.files/light-ebce58d0a40c3431.css"><link rel="stylesheet" disabled href="../static.files/dark-f23faae4a2daf9a6.css"><link rel="stylesheet" disabled href="../static.files/ayu-8af5e100b21cd173.css"><script id="default-settings" ></script><script src="../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-c55e1eb52e1886b4.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../geo/index.html"><div class="logo-container"><img src="https://raw.githubusercontent.com/georust/meta/master/logo/logo.png" alt="logo"></div></a><h2></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../geo/index.html"><div class="logo-container">
+                    <img src="https://raw.githubusercontent.com/georust/meta/master/logo/logo.png" alt="logo"></div></a><h2 class="location"><a href="#">Crate geo</a></h2><div class="sidebar-elems"><ul class="block"><li class="version">Version 0.23.1</li><li><a id="all-types" href="all.html">All Items</a></li></ul><section><ul class="block"><li><a href="#modules">Modules</a></li><li><a href="#macros">Macros</a></li><li><a href="#enums">Enums</a></li><li><a href="#traits">Traits</a></li></ul></section></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1 class="fqn">Crate <a class="mod" href="#">geo</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../src/geo/lib.rs.html#1-296">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>The <code>geo</code> crate provides geospatial primitive types and algorithms.</p>
+<h2 id="types"><a href="#types">Types</a></h2>
+<ul>
+<li><strong><a href="geometry/struct.Coord.html" title="Coord"><code>Coord</code></a></strong>: A two-dimensional coordinate. All geometry types are composed of <a href="geometry/struct.Coord.html" title="Coord"><code>Coord</code></a>s, though <a href="geometry/struct.Coord.html" title="Coord"><code>Coord</code></a> itself is not a <a href="geometry/enum.Geometry.html" title="Geometry"><code>Geometry</code></a> type.</li>
+<li><strong><a href="geometry/struct.Point.html" title="Point"><code>Point</code></a></strong>: A single point represented by one <a href="geometry/struct.Coord.html" title="Coord"><code>Coord</code></a></li>
+<li><strong><a href="geometry/struct.MultiPoint.html" title="MultiPoint"><code>MultiPoint</code></a></strong>: A collection of <a href="geometry/struct.Point.html" title="Point"><code>Point</code></a>s</li>
+<li><strong><a href="geometry/struct.Line.html" title="Line"><code>Line</code></a></strong>: A line segment represented by two <a href="geometry/struct.Coord.html" title="Coord"><code>Coord</code></a>s</li>
+<li><strong><a href="geometry/struct.LineString.html" title="LineString"><code>LineString</code></a></strong>: A series of contiguous line segments represented by two or more
+<a href="geometry/struct.Coord.html" title="Coord"><code>Coord</code></a>s</li>
+<li><strong><a href="geometry/struct.MultiLineString.html" title="MultiLineString"><code>MultiLineString</code></a></strong>: A collection of <a href="geometry/struct.LineString.html" title="LineString"><code>LineString</code></a>s</li>
+<li><strong><a href="geometry/struct.Polygon.html" title="Polygon"><code>Polygon</code></a></strong>: A bounded area represented by one <a href="geometry/struct.LineString.html" title="LineString"><code>LineString</code></a> exterior ring, and zero or
+more <a href="geometry/struct.LineString.html" title="LineString"><code>LineString</code></a> interior rings</li>
+<li><strong><a href="geometry/struct.MultiPolygon.html" title="MultiPolygon"><code>MultiPolygon</code></a></strong>: A collection of <a href="geometry/struct.Polygon.html" title="Polygon"><code>Polygon</code></a>s</li>
+<li><strong><a href="geometry/struct.Rect.html" title="Rect"><code>Rect</code></a></strong>: An axis-aligned bounded rectangle represented by minimum and maximum
+<a href="geometry/struct.Coord.html" title="Coord"><code>Coord</code></a>s</li>
+<li><strong><a href="geometry/struct.Triangle.html" title="Triangle"><code>Triangle</code></a></strong>: A bounded area represented by three <a href="geometry/struct.Coord.html" title="Coord"><code>Coord</code></a> vertices</li>
+<li><strong><a href="geometry/struct.GeometryCollection.html" title="GeometryCollection"><code>GeometryCollection</code></a></strong>: A collection of <a href="geometry/enum.Geometry.html" title="Geometry"><code>Geometry</code></a>s</li>
+<li><strong><a href="geometry/enum.Geometry.html" title="Geometry"><code>Geometry</code></a></strong>: An enumeration of all geometry types, excluding <a href="geometry/struct.Coord.html" title="Coord"><code>Coord</code></a></li>
+</ul>
+<p>The preceding types are reexported from the <a href="https://crates.io/crates/geo-types"><code>geo-types</code></a> crate. Consider using that crate
+if you only need access to these types and no other <code>geo</code> functionality.</p>
+<h3 id="semantics"><a href="#semantics">Semantics</a></h3>
+<p>The geospatial types provided here aim to adhere to the <a href="https://www.ogc.org/standards/sfa">OpenGIS Simple feature access</a>
+standards. Thus, the types here are inter-operable with other implementations of the standards:
+<a href="https://github.com/locationtech/jts">JTS</a>, <a href="https://trac.osgeo.org/geos">GEOS</a>, etc.</p>
+<h2 id="algorithms"><a href="#algorithms">Algorithms</a></h2><h3 id="area"><a href="#area">Area</a></h3>
+<ul>
+<li><strong><a href="algorithm/area/trait.Area.html"><code>Area</code></a></strong>: Calculate the planar area of a geometry</li>
+<li><strong><a href="algorithm/chamberlain_duquette_area/trait.ChamberlainDuquetteArea.html"><code>ChamberlainDuquetteArea</code></a></strong>: Calculate the geodesic area of a geometry</li>
+</ul>
+<h3 id="boolean-operations"><a href="#boolean-operations">Boolean Operations</a></h3>
+<ul>
+<li><strong><a href="algorithm/bool_ops/trait.BooleanOps.html"><code>BooleanOps</code></a></strong>: combine or split (Multi)Polygons using intersecton, union, xor, or difference operations</li>
+</ul>
+<h3 id="distance"><a href="#distance">Distance</a></h3>
+<ul>
+<li><strong><a href="algorithm/euclidean_distance/trait.EuclideanDistance.html"><code>EuclideanDistance</code></a></strong>: Calculate the minimum euclidean distance between geometries</li>
+<li><strong><a href="algorithm/geodesic_distance/trait.GeodesicDistance.html"><code>GeodesicDistance</code></a></strong>: Calculate the minimum geodesic distance between geometries using the algorithm presented in <em>Algorithms for geodesics</em> by Charles Karney (2013)</li>
+<li><strong><a href="algorithm/haversine_distance/trait.HaversineDistance.html"><code>HaversineDistance</code></a></strong>: Calculate the minimum geodesic distance between geometries using the haversine formula</li>
+<li><strong><a href="algorithm/vincenty_distance/trait.VincentyDistance.html"><code>VincentyDistance</code></a></strong>: Calculate the minimum geodesic distance between geometries using Vincenty’s formula</li>
+</ul>
+<h3 id="length"><a href="#length">Length</a></h3>
+<ul>
+<li><strong><a href="algorithm/euclidean_length/trait.EuclideanLength.html"><code>EuclideanLength</code></a></strong>: Calculate the euclidean length of a geometry</li>
+<li><strong><a href="algorithm/geodesic_length/trait.GeodesicLength.html"><code>GeodesicLength</code></a></strong>: Calculate the geodesic length of a geometry using the algorithm presented in <em>Algorithms for geodesics</em> by Charles Karney (2013)</li>
+<li><strong><a href="algorithm/haversine_length/trait.HaversineLength.html"><code>HaversineLength</code></a></strong>: Calculate the geodesic length of a geometry using the haversine formula</li>
+<li><strong><a href="algorithm/vincenty_length/trait.VincentyLength.html"><code>VincentyLength</code></a></strong>: Calculate the geodesic length of a geometry using Vincenty’s formula</li>
+</ul>
+<h3 id="outlier-detection"><a href="#outlier-detection">Outlier Detection</a></h3>
+<ul>
+<li><strong><a href="algorithm/outlier_detection/trait.OutlierDetection.html"><code>OutlierDetection</code></a></strong>: Detect outliers in a group of points using <a href="https://en.wikipedia.org/wiki/Local_outlier_factor">LOF</a></li>
+</ul>
+<h3 id="simplification"><a href="#simplification">Simplification</a></h3>
+<ul>
+<li><strong><a href="algorithm/simplify/trait.Simplify.html"><code>Simplify</code></a></strong>: Simplify a geometry using the Ramer–Douglas–Peucker algorithm</li>
+<li><strong><a href="algorithm/simplify/trait.SimplifyIdx.html"><code>SimplifyIdx</code></a></strong>: Calculate a simplified geometry using the Ramer–Douglas–Peucker algorithm, returning coordinate indices</li>
+<li><strong><a href="algorithm/simplifyvw/trait.SimplifyVW.html"><code>SimplifyVW</code></a></strong>: Simplify a geometry using the Visvalingam-Whyatt algorithm</li>
+<li><strong><a href="algorithm/simplifyvw/trait.SimplifyVWPreserve.html"><code>SimplifyVWPreserve</code></a></strong>: Simplify a geometry using a topology-preserving variant of the Visvalingam-Whyatt algorithm</li>
+<li><strong><a href="algorithm/simplifyvw/trait.SimplifyVwIdx.html"><code>SimplifyVwIdx</code></a></strong>: Calculate a simplified geometry using a topology-preserving variant of the Visvalingam-Whyatt algorithm, returning coordinate indices</li>
+</ul>
+<h3 id="query"><a href="#query">Query</a></h3>
+<ul>
+<li><strong><a href="algorithm/bearing/trait.Bearing.html"><code>Bearing</code></a></strong>: Calculate the bearing between points</li>
+<li><strong><a href="algorithm/closest_point/trait.ClosestPoint.html"><code>ClosestPoint</code></a></strong>: Find the point on a geometry
+closest to a given point</li>
+<li><strong><a href="algorithm/is_convex/trait.IsConvex.html"><code>IsConvex</code></a></strong>: Calculate the convexity of a
+<a href="geometry/struct.LineString.html" title="LineString"><code>LineString</code></a></li>
+<li><strong><a href="algorithm/line_interpolate_point/trait.LineInterpolatePoint.html"><code>LineInterpolatePoint</code></a></strong>:
+Generates a point that lies a given fraction along the line</li>
+<li><strong><a href="algorithm/line_locate_point/trait.LineLocatePoint.html"><code>LineLocatePoint</code></a></strong>: Calculate the
+fraction of a line’s total length representing the location of the closest point on the
+line to the given point</li>
+</ul>
+<h3 id="similarity"><a href="#similarity">Similarity</a></h3>
+<ul>
+<li><strong><a href="algorithm/frechet_distance/trait.FrechetDistance.html"><code>FrechetDistance</code></a></strong>: Calculate the similarity between <a href="geometry/struct.LineString.html" title="LineString"><code>LineString</code></a>s using the Fréchet distance</li>
+</ul>
+<h3 id="topology"><a href="#topology">Topology</a></h3>
+<ul>
+<li><strong><a href="algorithm/contains/trait.Contains.html"><code>Contains</code></a></strong>: Calculate if a geometry contains another
+geometry</li>
+<li><strong><a href="algorithm/coordinate_position/trait.CoordinatePosition.html"><code>CoordinatePosition</code></a></strong>: Calculate
+the position of a coordinate relative to a geometry</li>
+<li><strong><a href="algorithm/dimensions/trait.HasDimensions.html"><code>HasDimensions</code></a></strong>: Determine the dimensions of a geometry</li>
+<li><strong><a href="algorithm/intersects/trait.Intersects.html"><code>Intersects</code></a></strong>: Calculate if a geometry intersects
+another geometry</li>
+<li><strong><a href="algorithm/line_intersection/fn.line_intersection.html"><code>line_intersection</code></a></strong>: Calculates the
+intersection, if any, between two lines.</li>
+<li><strong><a href="algorithm/relate/trait.Relate.html"><code>Relate</code></a></strong>: Topologically relate two geometries based on
+<a href="https://en.wikipedia.org/wiki/DE-9IM">DE-9IM</a> semantics.</li>
+<li><strong><a href="algorithm/within/trait.Within.html" title="Within"><code>Within</code></a></strong>: Calculate if a geometry lies completely within another geometry.</li>
+</ul>
+<h3 id="winding"><a href="#winding">Winding</a></h3>
+<ul>
+<li><strong><a href="algorithm/orient/trait.Orient.html"><code>Orient</code></a></strong>: Apply a specified winding <a href="algorithm/orient/enum.Direction.html"><code>Direction</code></a> to a <a href="geometry/struct.Polygon.html" title="Polygon"><code>Polygon</code></a>’s interior and exterior rings</li>
+<li><strong><a href="algorithm/winding_order/trait.Winding.html"><code>Winding</code></a></strong>: Calculate and manipulate the <a href="algorithm/winding_order/enum.WindingOrder.html"><code>WindingOrder</code></a> of a <a href="geometry/struct.LineString.html" title="LineString"><code>LineString</code></a></li>
+</ul>
+<h3 id="iteration"><a href="#iteration">Iteration</a></h3>
+<ul>
+<li><strong><a href="algorithm/coords_iter/trait.CoordsIter.html"><code>CoordsIter</code></a></strong>: Iterate over the coordinates of a geometry</li>
+<li><strong><a href="algorithm/map_coords/trait.MapCoords.html"><code>MapCoords</code></a></strong>: Map a function over all the coordinates
+in a geometry, returning a new geometry</li>
+<li><strong><a href="algorithm/map_coords/trait.MapCoordsInplace.html"><code>MapCoordsInplace</code></a></strong>: Map a function over all the
+coordinates in a geometry in-place</li>
+<li><strong><a href="algorithm/map_coords/trait.TryMapCoords.html"><code>TryMapCoords</code></a></strong>: Map a fallible function over all
+the coordinates in a geometry, returning a new geometry wrapped in a <code>Result</code></li>
+<li><strong><a href="algorithm/map_coords/trait.TryMapCoordsInplace.html"><code>TryMapCoordsInplace</code></a></strong>: Map a fallible function over all
+the coordinates in a geometry in-place</li>
+<li><strong><a href="algorithm/lines_iter/trait.LinesIter.html"><code>LinesIter</code></a></strong>: Iterate over lines of a geometry</li>
+</ul>
+<h3 id="boundary"><a href="#boundary">Boundary</a></h3>
+<ul>
+<li><strong><a href="algorithm/bounding_rect/trait.BoundingRect.html"><code>BoundingRect</code></a></strong>: Calculate the axis-aligned
+bounding rectangle of a geometry</li>
+<li><strong><a href="algorithm/concave_hull/trait.ConcaveHull.html"><code>ConcaveHull</code></a></strong>: Calculate the concave hull of a
+geometry</li>
+<li><strong><a href="algorithm/convex_hull/trait.ConvexHull.html"><code>ConvexHull</code></a></strong>: Calculate the convex hull of a
+geometry</li>
+<li><strong><a href="algorithm/extremes/trait.Extremes.html"><code>Extremes</code></a></strong>: Calculate the extreme coordinates and
+indices of a geometry</li>
+</ul>
+<h3 id="affine-transformations"><a href="#affine-transformations">Affine transformations</a></h3>
+<ul>
+<li><strong><a href="algorithm/rotate/trait.Rotate.html"><code>Rotate</code></a></strong>: Rotate a geometry around its centroid</li>
+<li><strong><a href="algorithm/scale/trait.Scale.html"><code>Scale</code></a></strong>: Scale a geometry up or down by a factor</li>
+<li><strong><a href="algorithm/skew/trait.Skew.html"><code>Skew</code></a></strong>: Skew a geometry by shearing angles along the <code>x</code> and <code>y</code> dimension</li>
+<li><strong><a href="algorithm/translate/trait.Translate.html"><code>Translate</code></a></strong>: Translate a geometry along its axis</li>
+<li><strong><a href="algorithm/affine_ops/trait.AffineOps.html"><code>AffineOps</code></a></strong>: generalised composable affine operations</li>
+</ul>
+<h3 id="conversion"><a href="#conversion">Conversion</a></h3>
+<ul>
+<li><strong><a href="algorithm/convert/trait.Convert.html" title="Convert"><code>Convert</code></a></strong>: Convert (infalliby) the type of a geometry’s coordinate value</li>
+<li><strong><a href="algorithm/convert/trait.TryConvert.html" title="TryConvert"><code>TryConvert</code></a></strong>: Convert (falliby) the type of a geometry’s coordinate value</li>
+</ul>
+<h3 id="miscellaneous"><a href="#miscellaneous">Miscellaneous</a></h3>
+<ul>
+<li><strong><a href="algorithm/centroid/trait.Centroid.html"><code>Centroid</code></a></strong>: Calculate the centroid of a geometry</li>
+<li><strong><a href="algorithm/haversine_destination/trait.HaversineDestination.html"><code>HaversineDestination</code></a></strong>:</li>
+<li><strong><a href="algorithm/haversine_intermediate/trait.HaversineIntermediate.html"><code>HaversineIntermediate</code></a></strong>:</li>
+<li><strong><a href="proj"><code>proj</code></a></strong>: Project geometries with the <code>proj</code> crate (requires the <code>use-proj</code> feature)</li>
+<li><strong><a href="algorithm/chaikin_smoothing/trait.ChaikinSmoothing.html"><code>ChaikinSmoothing</code></a></strong>: Smoothen <code>LineString</code>, <code>Polygon</code>, <code>MultiLineString</code> and <code>MultiPolygon</code> using Chaikins algorithm.</li>
+<li><strong><a href="algorithm/densify/trait.Densify.html"><code>Densify</code></a></strong>: Densify linear geometry components by interpolating points</li>
+<li><strong><a href="Transform"><code>Transform</code></a></strong>: Transform a geometry using Proj.</li>
+<li><strong><a href="algorithm/remove_repeated_points/trait.RemoveRepeatedPoints.html"><code>RemoveRepeatedPoints</code></a></strong>: Remove repeated points from a geometry.</li>
+</ul>
+<h2 id="features"><a href="#features">Features</a></h2>
+<p>The following optional <a href="https://doc.rust-lang.org/cargo/reference/features.html">Cargo features</a> are available:</p>
+<ul>
+<li><code>proj-network</code>: Enables <a href="https://proj.org/usage/network.html">network grid</a> support for the <a href="https://github.com/georust/proj"><code>proj</code> crate</a>. After enabling this feature, <a href="https://docs.rs/proj/*/proj/#grid-file-download">further configuration</a> is required to use the network grid</li>
+<li><code>use-proj</code>: Enables coordinate conversion and transformation of <code>Point</code> geometries using the <a href="https://github.com/georust/proj"><code>proj</code> crate</a></li>
+<li><code>use-serde</code>: Allows geometry types to be serialized and deserialized with <a href="https://serde.rs/">Serde</a></li>
+</ul>
+<h2 id="ecosystem"><a href="#ecosystem">Ecosystem</a></h2>
+<p>There’s a wide variety of <code>geo</code>-compatible crates in the ecosystem that offer functionality not
+included in the <code>geo</code> crate, including:</p>
+<ul>
+<li>Reading and writing file formats (e.g. <a href="https://crates.io/crates/geojson">GeoJSON</a>, <a href="https://crates.io/crates/wkt">WKT</a>,
+<a href="https://crates.io/crates/shapefile">shapefile</a>)</li>
+<li><a href="https://crates.io/crates/latlon">Latitude and longitude parsing</a></li>
+<li><a href="https://crates.io/crates/polylabel">Label placement</a></li>
+<li><a href="https://crates.io/crates/geocoding">Geocoding</a></li>
+<li><a href="https://georust.org">and much more…</a></li>
+</ul>
+</div></details><h2 id="reexports" class="small-section-header"><a href="#reexports">Re-exports</a></h2><div class="item-table"><div class="item-row"><div class="item-left import-item"><code>pub use crate::<a class="mod" href="algorithm/index.html" title="mod geo::algorithm">algorithm</a>::*;</code></div></div><div class="item-row"><div class="item-left import-item"><code>pub use <a class="mod" href="geometry/index.html" title="mod geo::geometry">geometry</a>::*;</code></div></div></div><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2><div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="mod" href="algorithm/index.html" title="geo::algorithm mod">algorithm</a></div><div class="item-right docblock-short">This module includes all the functions of geometric calculations</div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="geometry/index.html" title="geo::geometry mod">geometry</a></div><div class="item-right docblock-short">This module makes all geometry types available</div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="prelude/index.html" title="geo::prelude mod">prelude</a></div><div class="item-right docblock-short">A prelude which re-exports the traits for manipulating objects in this
+crate. Typically imported with <code>use geo::prelude::*</code>.</div></div></div><h2 id="macros" class="small-section-header"><a href="#macros">Macros</a></h2><div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="macro" href="macro.coord.html" title="geo::coord macro">coord</a></div><div class="item-right docblock-short">Creates a [<code>Coord</code>] from the given scalars.</div></div><div class="item-row"><div class="item-left module-item"><a class="macro" href="macro.geometry_delegate_impl.html" title="geo::geometry_delegate_impl macro">geometry_delegate_impl</a></div><div class="item-right docblock-short">Implements the common pattern where a Geometry enum simply delegates its trait impl to it’s inner type.</div></div><div class="item-row"><div class="item-left module-item"><a class="macro" href="macro.line_string.html" title="geo::line_string macro">line_string</a></div><div class="item-right docblock-short">Creates a <a href="./line_string/struct.LineString.html"><code>LineString</code></a> containing the given coordinates.</div></div><div class="item-row"><div class="item-left module-item"><a class="macro" href="macro.point.html" title="geo::point macro">point</a></div><div class="item-right docblock-short">Creates a <a href="./struct.Point.html"><code>Point</code></a> from the given coordinates.</div></div><div class="item-row"><div class="item-left module-item"><a class="macro" href="macro.polygon.html" title="geo::polygon macro">polygon</a></div><div class="item-right docblock-short">Creates a <a href="./struct.Polygon.html"><code>Polygon</code></a> containing the given coordinates.</div></div></div><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2><div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="enum" href="enum.Closest.html" title="geo::Closest enum">Closest</a></div><div class="item-right docblock-short">The result of trying to find the closest spot on an object to a point.</div></div></div><h2 id="traits" class="small-section-header"><a href="#traits">Traits</a></h2><div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.CoordFloat.html" title="geo::CoordFloat trait">CoordFloat</a></div><div class="item-right docblock-short">For algorithms which can only use floating point <code>Point</code>s/<code>Coord</code>s, like area or length calculations</div></div><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.CoordNum.html" title="geo::CoordNum trait">CoordNum</a></div><div class="item-right docblock-short">For algorithms which can use both integer <strong>and</strong> floating point <code>Point</code>s/<code>Coord</code>s</div></div><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.GeoFloat.html" title="geo::GeoFloat trait">GeoFloat</a></div><div class="item-right docblock-short">A common numeric trait used for geo algorithms</div></div><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.GeoNum.html" title="geo::GeoNum trait">GeoNum</a></div><div class="item-right docblock-short">A trait for methods which work for both integers <strong>and</strong> floating point</div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="geo" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.1 (d5a82bbd2 2023-02-07)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>

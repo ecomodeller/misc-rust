@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"trait":[["Area","Signed and unsigned planar area of a geometry."]]};

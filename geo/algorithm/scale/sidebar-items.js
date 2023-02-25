@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"trait":[["Scale","An affine transformation which scales a geometry up or down by a factor."]]};

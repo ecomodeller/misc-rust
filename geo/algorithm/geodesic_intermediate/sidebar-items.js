@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"trait":[["GeodesicIntermediate","Returns a new Point along a route between two existing points on an ellipsoidal model of the earth"]]};

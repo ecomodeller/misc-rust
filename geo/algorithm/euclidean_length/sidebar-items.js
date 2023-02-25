@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"trait":[["EuclideanLength","Calculation of the length"]]};

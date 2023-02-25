@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"trait":[["InteriorPoint","Calculation of interior points. An interior point is a point that’s guaranteed to intersect a given geometry, and will be strictly on the interior of the geometry if possible, or on the edge if the geometry has zero area. A best effort will additionally be made to locate the point reasonably centrally."]]};

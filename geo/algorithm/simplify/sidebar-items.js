@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"trait":[["Simplify","Simplifies a geometry."],["SimplifyIdx","Simplifies a geometry, returning the retained indices of the input."]]};

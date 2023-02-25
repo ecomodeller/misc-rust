@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":[["LineIntersection",""]],"fn":[["line_intersection","Returns the intersection between two `Lines`."]]};

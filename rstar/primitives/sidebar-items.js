@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":[["GeomWithData","An [RTreeObject] with a geometry and some associated data that can be inserted into an r-tree."],["Line","A line defined by a start and and end point."],["PointWithData","A point with some associated data that can be inserted into an r-tree."],["Rectangle","An n-dimensional rectangle defined by its two corners."]]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":[["CoordPos","The position of a `Coord` relative to a `Geometry`"]],"fn":[["coord_pos_relative_to_ring","Calculate the position of a `Coord` relative to a closed `LineString`."]],"trait":[["CoordinatePosition","Determine whether a `Coord` lies inside, outside, or on the boundary of a geometry."]]};

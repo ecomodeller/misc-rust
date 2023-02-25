@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"trait":[["FrechetDistance","Determine the similarity between two `LineStrings` using the Frechet distance."]]};

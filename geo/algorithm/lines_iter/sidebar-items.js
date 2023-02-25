@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":[["LineStringIter","Iterator over lines in a [LineString]."],["MapLinesIter","Utility to transform Iterator into Iterator<Iterator>."]],"trait":[["LinesIter","Iterate over lines of a geometry."]]};

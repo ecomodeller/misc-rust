@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"trait":[["Convert","Convert (infalliby) the type of a geometry’s coordinate value."],["TryConvert","Convert (fallibly) the type of a geometry’s coordinate value."]]};

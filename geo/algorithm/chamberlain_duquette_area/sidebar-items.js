@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"trait":[["ChamberlainDuquetteArea","Calculate the signed approximate geodesic area of a `Geometry`."]]};

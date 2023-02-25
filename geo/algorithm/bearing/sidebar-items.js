@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"trait":[["Bearing","Returns the bearing to another Point in degrees."]]};

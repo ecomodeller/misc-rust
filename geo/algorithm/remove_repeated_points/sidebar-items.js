@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"trait":[["RemoveRepeatedPoints","Remove repeated points from a `MultiPoint` and repeated consecutive coordinates from `LineString`, `Polygon`, `MultiLineString` and `MultiPolygon`."]]};

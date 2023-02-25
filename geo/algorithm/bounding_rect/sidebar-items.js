@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"trait":[["BoundingRect","Calculation of the bounding rectangle of a geometry."]]};
