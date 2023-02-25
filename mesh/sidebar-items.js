@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":[["read_element_line",""],["read_elements_from_file",""],["read_line",""],["read_node_coordinates",""]],"struct":[["Element",""],["ElementTable",""],["Geometry",""],["Node",""]]};
