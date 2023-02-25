@@ -22,3 +22,8 @@ jobs:
       run: cargo test --verbose
     - name: Create docs
       run: cargo doc
+    - name: Publish to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3.6.1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: target/doc/mesh_reader
