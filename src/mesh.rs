@@ -143,7 +143,7 @@ pub fn read_elements_from_file(filename: &str, start_line: usize) -> ElementTabl
 
 #[cfg(test)]
 mod tests {
-    use crate::mesh::{ElementTable, Geometry, Node};
+    use super::*;
 
     #[test]
     fn test_get_node() {
@@ -179,5 +179,57 @@ mod tests {
         let node = geometry.get_node(2);
         assert_eq!(node.coordinates[0], 1.0);
         assert_eq!(node.coordinates[1], 0.0);
+    }
+
+    #[test]
+    fn test_get_last_element() {
+        let mut elements = Vec::new();
+        elements.push(Element {
+            id: 1,
+            nodes: vec![1, 2, 3, 4],
+        });
+        elements.push(Element {
+            id: 2,
+            nodes: vec![2, 3, 4, 5],
+        });
+        elements.push(Element {
+            id: 3,
+            nodes: vec![3, 4, 5, 6],
+        });
+
+        let geometry = Geometry {
+            nodes: Vec::new(),
+            element_table: ElementTable { elements: elements },
+        };
+
+        let element = geometry.get_element(3);
+        assert!(element.nodes.contains(&6));
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_get_missing_element_panics() {
+        let mut elements = Vec::new();
+        elements.push(Element {
+            id: 1,
+            nodes: vec![1, 2, 3, 4],
+        });
+
+        let geometry = Geometry {
+            nodes: Vec::new(),
+            element_table: ElementTable { elements: elements },
+        };
+
+        // panics because element 0 does not exist, elements start at 1
+        geometry.get_element(0);
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_add_element_with_id_less_than_1_is_not_allowed() {
+        Element {
+            id: 0, // id must be greater than 0
+            nodes: vec![1, 2, 3, 4],
+        };
     }
 }
