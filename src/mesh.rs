@@ -53,6 +53,14 @@ pub struct Element {
 }
 
 impl Element {
+    /// Create a new element
+    /// # Panics
+    /// Panics if the id is less than 1
+    /// # Examples
+    /// ```
+    /// use mesh::Element;
+    /// let element = Element::new(1, vec![1, 2, 3]);
+    /// ```
     pub fn new(id: usize, nodes: Vec<usize>) -> Element {
         if id < 1 {
             panic!("Element id must be greater than 0");
