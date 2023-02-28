@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Coordinate transformation via bindings to the PROJ v7.1.x API."><meta name="keywords" content="rust, rustlang, rust-lang, proj"><title>proj - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-6827029ac823cab7.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../static.files/light-ebce58d0a40c3431.css"><link rel="stylesheet" disabled href="../static.files/dark-f23faae4a2daf9a6.css"><link rel="stylesheet" disabled href="../static.files/ayu-8af5e100b21cd173.css"><script id="default-settings" ></script><script src="../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-c55e1eb52e1886b4.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../proj/index.html"><div class="logo-container"><img src="https://raw.githubusercontent.com/georust/meta/master/logo/logo.png" alt="logo"></div></a><h2></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../proj/index.html"><div class="logo-container">
+                    <img src="https://raw.githubusercontent.com/georust/meta/master/logo/logo.png" alt="logo"></div></a><h2 class="location"><a href="#">Crate proj</a></h2><div class="sidebar-elems"><ul class="block"><li class="version">Version 0.22.1</li><li><a id="all-types" href="all.html">All Items</a></li></ul><section><ul class="block"><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#traits">Traits</a></li></ul></section></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1 class="fqn">Crate <a class="mod" href="#">proj</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../src/proj/lib.rs.html#1-221">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Coordinate transformation via bindings to the <a href="https://proj.org">PROJ</a> v7.1.x API.</p>
+<p>Two coordinate transformation operations are currently provided: <em>projection</em> (and inverse
+projection) and <em>conversion</em>.</p>
+<p><em>Projection</em> is intended for transformations between geodetic and projected coordinates and
+vice versa (inverse projection), while <em>conversion</em> is intended for transformations between
+projected coordinate systems. The PROJ <a href="https://proj.org/operations/index.html">documentation</a>
+explains the distinction between these operations in more detail.</p>
+<p>This crate depends on <a href="https://proj.org"><code>libproj v7.1.x</code></a>, accessed via the
+<a href="https://docs.rs/proj-sys"><code>proj-sys</code></a> crate. By default, <code>proj-sys</code> will try to find a
+pre-existing installation of libproj on your system. If an appropriate version of libproj
+cannot be found, the build script will attempt to build libproj from source. You may specify a
+from-source build with the <a href="#feature-flags"><code>bundled_proj</code> feature</a>.</p>
+<p>Out of the box, any <code>(x, y)</code> numeric tuple can be provided as input to proj. You can <a href="#conform-your-own-types">conform
+your own types</a> to the <a href="proj/trait.Coord.html">Coord</a> trait to pass
+them in directly and avoid intermediate allocations. There is a <a href="#feature-flags"><code>geo-types</code>
+feature</a>, enabled by default, which implements this trait for types in
+the <a href="https://docs.rs/geo-types"><code>geo-types</code> crate</a>.</p>
+<p>Methods for <a href="struct.Proj.html#method.convert_array">conversion</a> and
+<a href="struct.Proj.html#method.project_array">projection</a> of slices of <code>Coord</code>s are also available.</p>
+<h2 id="examples"><a href="#examples">Examples</a></h2><h3 id="convert-from-nad-83-us-survey-feet-to-nad-83-meters-using-epsg-codes"><a href="#convert-from-nad-83-us-survey-feet-to-nad-83-meters-using-epsg-codes">Convert from NAD 83 US Survey Feet to NAD 83 Meters Using EPSG Codes</a></h3>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>proj::Proj;
+
+<span class="kw">let </span>from = <span class="string">&quot;EPSG:2230&quot;</span>;
+<span class="kw">let </span>to = <span class="string">&quot;EPSG:26946&quot;</span>;
+<span class="kw">let </span>ft_to_m = Proj::new_known_crs(<span class="kw-2">&amp;</span>from, <span class="kw-2">&amp;</span>to, <span class="prelude-val">None</span>).unwrap();
+<span class="kw">let </span>result = ft_to_m
+    .convert((<span class="number">4760096.421921f64</span>, <span class="number">3744293.729449f64</span>))
+    .unwrap();
+<span class="macro">assert_relative_eq!</span>(result.<span class="number">0</span>, <span class="number">1450880.29</span>, epsilon=<span class="number">1e-2</span>);
+<span class="macro">assert_relative_eq!</span>(result.<span class="number">1</span>, <span class="number">1141263.01</span>, epsilon=<span class="number">1e-2</span>);</code></pre></div>
+<h3 id="convert-from-nad-83-us-survey-feet-to-nad-83-meters-using-the-pipeline-operator"><a href="#convert-from-nad-83-us-survey-feet-to-nad-83-meters-using-the-pipeline-operator">Convert from NAD 83 US Survey Feet to NAD 83 Meters Using the <code>pipeline</code> Operator</a></h3>
+<p>Note that as of v5.0.0, PROJ uses the <a href="https://proj.org/operations/pipeline.html"><code>pipeline</code></a>
+operator, which allows an arbitrary number of steps in a conversion. The example below works as
+follows:</p>
+<ul>
+<li>define the operation as a <code>pipeline</code> operation</li>
+<li>define <code>step</code> 1 as an <code>inv</code>erse transform, yielding geodetic coordinates</li>
+<li>define <code>step</code> 2 as a forward transform to projected coordinates, yielding metres.</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>proj::Proj;
+
+<span class="kw">let </span>ft_to_m = Proj::new(<span class="string">&quot;
+    +proj=pipeline
+    +step +inv +proj=lcc +lat_1=33.88333333333333
+    +lat_2=32.78333333333333 +lat_0=32.16666666666666
+    +lon_0=-116.25 +x_0=2000000.0001016 +y_0=500000.0001016001 +ellps=GRS80
+    +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs
+    +step +proj=lcc +lat_1=33.88333333333333 +lat_2=32.78333333333333 +lat_0=32.16666666666666
+    +lon_0=-116.25 +x_0=2000000 +y_0=500000
+    +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs
+&quot;</span>).unwrap();
+
+<span class="comment">// The Presidio, approximately
+</span><span class="kw">let </span>result = ft_to_m.convert((<span class="number">4760096.421921f64</span>, <span class="number">3744293.729449f64</span>)).unwrap();
+<span class="macro">assert_relative_eq!</span>(result.<span class="number">0</span>, <span class="number">1450880.29</span>, epsilon=<span class="number">1e-2</span>);
+<span class="macro">assert_relative_eq!</span>(result.<span class="number">1</span>, <span class="number">1141263.01</span>, epsilon=<span class="number">1e-2</span>);</code></pre></div>
+<h2 id="usage"><a href="#usage">Usage</a></h2>
+<p>There are two options for creating a transformation:</p>
+<ol>
+<li>If you don’t require additional <a href="#grid-file-download">grids</a> or other customisation:
+<ul>
+<li>Call <code>Proj::new</code> or <code>Proj::new_known_crs</code>. This creates a transformation instance (<a href="proj/struct.Proj.html"><code>Proj</code></a>)</li>
+</ul>
+</li>
+<li>If you require a grid for the transformation you wish to carry out, or you need to customise
+the search path or the grid endpoint:
+<ul>
+<li>Create a new <a href="proj/struct.ProjBuilder.html"><code>ProjBuilder</code></a> by calling
+<code>ProjBuilder::new()</code>. It may be modified to enable network downloads, disable the grid,
+cache or modify search paths;</li>
+<li>Call <a href="proj/struct.ProjBuilder.html#method.proj"><code>ProjBuilder.proj()</code></a> or
+<a href="proj/struct.ProjBuilder.html#method.proj_known_crs"><code>ProjBuilder.proj_known_crs()</code></a>. This
+creates a transformation instance (<code>Proj</code>)</li>
+</ul>
+</li>
+</ol>
+<p><strong>Note</strong>:</p>
+<ol>
+<li>Both <code>ProjBuilder</code> and <code>Proj</code> implement the <a href="proj/trait.Info.html"><code>Info</code></a> trait, which can
+be used to get information about the current state of the <code>PROJ</code> instance;</li>
+<li><code>Proj::new()</code> and <code>ProjBuilder::proj()</code> have the same signature;</li>
+<li><code>Proj::new_known_crs()</code> and <code>ProjBuilder::proj_known_crs()</code> have the same signature.</li>
+</ol>
+<h2 id="requirements"><a href="#requirements">Requirements</a></h2>
+<p>By default, the crate requires <code>libproj</code> 7.1.x to be present on your system. While it may be
+backwards-compatible with older PROJ 6 versions, this is neither tested nor supported.</p>
+<h2 id="feature-flags"><a href="#feature-flags">Feature Flags</a></h2>
+<ul>
+<li><code>geo-types</code>: include <a href="proj/trait.Coord.html#impl-Coord%3CT%3E-for-Coordinate%3CT%3E">trait impls for
+<code>geo-types</code></a>. See
+<a href="#integration-with-geo-types">example</a>.</li>
+<li><code>pkg_config</code>: enables the use of <code>pkg-config</code> when linking against <code>libproj</code> —
+note that <code>pkg-config</code> must be available on your system.</li>
+<li><code>bundled_proj</code>: builds <code>libproj</code> from source bundled in the <code>proj-sys</code> crate.
+Note that this feature requires Sqlite3 and <code>libtiff</code> to be present on your
+system.</li>
+<li><code>network</code>: exposes APIs which, when enabled, can fetch grid data from the internet to improve
+projection accuracy. See <a href="struct.ProjBuilder.html#method.enable_network"><code>enable_network</code></a>
+for details.</li>
+</ul>
+<h3 id="network-cache-and-search-path-functionality"><a href="#network-cache-and-search-path-functionality">Network, Cache, and Search Path Functionality</a></h3><h4 id="grid-file-download"><a href="#grid-file-download">Grid File Download</a></h4>
+<p><code>proj</code> supports <a href="https://proj.org/usage/network.html">network grid download</a> functionality via
+the <a href="#feature-flags"><code>network</code> feature</a>.  Network access is <strong>disabled</strong> by default, and can be
+activated by passing a <code>true</code> <code>bool</code> to
+<a href="proj/struct.ProjBuilder.html#method.enable_network"><code>enable_network()</code></a>.  Network
+functionality status can be queried with <code>network_enabled</code>, and the download endpoint can be
+queried and set using <code>get_url_endpoint</code> and <code>set_url_endpoint</code>.</p>
+<h5 id="grid-file-cache"><a href="#grid-file-cache">Grid File Cache</a></h5>
+<p>Up to 300 mb of downloaded grids are cached to save bandwidth: This cache can be enabled or
+disabled using <a href="proj/struct.ProjBuilder.html#method.grid_cache_enable"><code>grid_cache_enable</code></a>.</p>
+<h4 id="search-path-modification"><a href="#search-path-modification">Search Path Modification</a></h4>
+<p>The path used to search for resource files can be modified using
+<a href="proj/struct.ProjBuilder.html#method.set_search_paths"><code>set_search_paths</code></a></p>
+<h3 id="conform-your-own-types"><a href="#conform-your-own-types">Conform your own types</a></h3>
+<p>If you have your own geometric types, you can conform them to the <code>Coord</code> trait and use <code>proj</code>
+without any intermediate allocation.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>proj::{Proj, Coord};
+
+<span class="kw">struct </span>MyPointOfIntereset {
+    lat: f64,
+    lon: f64,
+}
+
+<span class="kw">impl </span>Coord&lt;f64&gt; <span class="kw">for </span>MyPointOfIntereset {
+    <span class="kw">fn </span>x(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f64 {
+        <span class="self">self</span>.lon
+    }
+    <span class="kw">fn </span>y(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f64 {
+        <span class="self">self</span>.lat
+    }
+    <span class="kw">fn </span>from_xy(x: f64, y: f64) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{ lon: x, lat: y }
+    }
+}
+
+<span class="kw">let </span>donut_shop = MyPointOfIntereset { lat: <span class="number">34.095620</span>, lon: -<span class="number">118.283555 </span>};
+
+<span class="kw">let </span>from = <span class="string">&quot;EPSG:4326&quot;</span>;
+<span class="kw">let </span>to = <span class="string">&quot;EPSG:3309&quot;</span>;
+<span class="kw">let </span>proj = Proj::new_known_crs(<span class="kw-2">&amp;</span>from, <span class="kw-2">&amp;</span>to, <span class="prelude-val">None</span>).unwrap();
+
+<span class="kw">let </span>result = proj.convert(donut_shop).unwrap();
+
+<span class="macro">assert_relative_eq!</span>(result.x(), <span class="number">158458.67</span>, epsilon=<span class="number">1e-2</span>);
+<span class="macro">assert_relative_eq!</span>(result.y(), -<span class="number">434296.88</span>, epsilon=<span class="number">1e-2</span>);</code></pre></div>
+<h3 id="integration-with-geo-types"><a href="#integration-with-geo-types">Integration with <code>geo-types</code></a></h3>
+<p>If you’ve enabled the <code>geo-types</code> feature, you can skip allocating an intermediate representation,
+and pass the <a href="https://crates.io/crates/geo-types"><code>geo-types</code></a> directly.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>proj::Proj;
+<span class="kw">use </span>geo_types::Point;
+
+<span class="kw">let </span>my_point = Point::new(<span class="number">4760096.421921f64</span>, <span class="number">3744293.729449f64</span>);
+
+<span class="kw">let </span>from = <span class="string">&quot;EPSG:2230&quot;</span>;
+<span class="kw">let </span>to = <span class="string">&quot;EPSG:26946&quot;</span>;
+<span class="kw">let </span>nad_ft_to_m = Proj::new_known_crs(<span class="kw-2">&amp;</span>from, <span class="kw-2">&amp;</span>to, <span class="prelude-val">None</span>).unwrap();
+
+<span class="kw">let </span>result = nad_ft_to_m.convert(my_point).unwrap();
+
+<span class="macro">assert_relative_eq!</span>(result.x(), <span class="number">1450880.29</span>, epsilon=<span class="number">1e-2</span>);
+<span class="macro">assert_relative_eq!</span>(result.y(), <span class="number">1141263.01</span>, epsilon=<span class="number">1e-2</span>);</code></pre></div>
+</div></details><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2><div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Area.html" title="proj::Area struct">Area</a></div><div class="item-right docblock-short">The bounding box of an area of use</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Proj.html" title="proj::Proj struct">Proj</a></div><div class="item-right docblock-short">A coordinate transformation object</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.ProjBuilder.html" title="proj::ProjBuilder struct">ProjBuilder</a></div><div class="item-right docblock-short">A <code>PROJ</code> Context instance, used to create a transformation object.</div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Projinfo.html" title="proj::Projinfo struct">Projinfo</a></div><div class="item-right docblock-short"><a href="https://proj.org/development/reference/datatypes.html#c.PJ_INFO">Information</a> about PROJ</div></div></div><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2><div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="enum" href="enum.ProjError.html" title="proj::ProjError enum">ProjError</a></div><div class="item-right docblock-short">Errors originating in PROJ which can occur during projection and conversion</div></div></div><h2 id="traits" class="small-section-header"><a href="#traits">Traits</a></h2><div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.Coord.html" title="proj::Coord trait">Coord</a></div><div class="item-right docblock-short">A point in two dimensional space. The primary unit of input/output for proj.</div></div><div class="item-row"><div class="item-left module-item"><a class="trait" href="trait.Info.html" title="proj::Info trait">Info</a></div><div class="item-right docblock-short">Read-only utility methods for providing information about the current PROJ instance</div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="proj" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.1 (d5a82bbd2 2023-02-07)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
