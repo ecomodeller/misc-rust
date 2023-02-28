@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 geo = "0.23.1"
 geojson = "0.24.0"
+proj = "0.22.1"
